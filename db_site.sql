@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.7.3
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1:3306
--- Время создания: Сен 30 2017 г., 00:05
--- Версия сервера: 5.5.53
+-- Время создания: Ноя 01 2017 г., 16:03
+-- Версия сервера: 5.5.57
 -- Версия PHP: 5.5.38
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -37,6 +39,17 @@ CREATE TABLE `categories` (
   `part_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `categories`
+--
+
+INSERT INTO `categories` (`id`, `name`, `visible`, `created`, `updated`, `description`, `image`, `part_id`, `url`) VALUES
+(4, 'КАТЕГОРИЯ', 0, '', '', 'Описание', '', 0, ''),
+(3, 'КАТЕГОРИЯ', 0, '', '', 'Описание', '', 0, ''),
+(5, 'Техника крупная бытовая', 0, '', '', 'Техника крупная бытовая', '', 0, ''),
+(6, 'Техника крупная бытовая', 0, '', '', 'Техника крупная бытовая', '', 0, ''),
+(7, 'Техника для дома500', 0, '', '', 'Крутая', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -83,12 +96,39 @@ CREATE TABLE `products` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `description` varchar(255) NOT NULL,
+  `price` double(11,2) NOT NULL,
   `image` varchar(255) NOT NULL,
   `url` varchar(255) NOT NULL,
+  `visible` tinyint(2) NOT NULL,
   `criated` varchar(255) NOT NULL,
-  `updated` varchar(255) NOT NULL,
-  `visible` int(2) NOT NULL
+  `updated` varchar(255) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Дамп данных таблицы `products`
+--
+
+INSERT INTO `products` (`id`, `name`, `description`, `price`, `image`, `url`, `visible`, `criated`, `updated`) VALUES
+(1, 'видик2', 'классный2', 0.00, '', 'vidik', 1, '', ''),
+(2, 'видик', 'классный2', 0.00, '', 'vidik', 1, '', ''),
+(3, 'телек', 'классный', 0.00, '', 'telek', 0, '', ''),
+(4, 'радио', 'портативное', 0.00, '', 'radio', 0, '', ''),
+(5, 'радио настольное', 'большое', 0.00, '', 'radio-nastolnoe', 0, '', ''),
+(6, 'Машинка стиральная', 'белая', 0.00, '', 'mashinka-stiralnaya', 0, '', ''),
+(7, 'Машинка стиральнаяSumsung', 'белая', 0.00, '', 'mashinka-stiralnaya', 0, '', ''),
+(8, 'пылесос', 'ракета', 0.00, '', 'pylesos', 0, '', ''),
+(9, 'пылесос', 'ракета1', 0.00, '', 'pylesos', 0, '', ''),
+(10, 'антенна', 'Дм', 0.00, '', 'antenna', 0, '', ''),
+(11, 'стул', 'деревянный', 500.00, '', 'stul', 0, '', ''),
+(12, 'СД плеер', 'с наушниками', 700.00, '', 'sd-pleer', 0, '', ''),
+(13, 'табурет', 'круглый', 100.00, '', 'taburet', 1, '', ''),
+(14, 'диван', 'Еврокнижка', 3000.00, '', 'divan', 1, '', ''),
+(20, 'пуфик', 'мягкий', 0.00, '', 'pufik', 0, '', ''),
+(18, 'диван-книжка', 'мягкий', 4000.00, '', 'divan-knizhka', 1, '', ''),
+(22, 'Техника для дома', 'Электоротехника бытовая', 0.00, '', 'tehnika-dlya-doma', 0, '', ''),
+(37, 'Техника крупная бытовая', 'Техника крупная бытовая', 0.00, '', 'tehnika-krupnaya-bytovaya', 0, '', ''),
+(36, 'Техника крупная бытовая', 'Техника крупная бытовая', 0.00, '', 'tehnika-krupnaya-bytovaya', 0, '', ''),
+(38, 'Техника для дома500', 'Крутая', 0.00, '', 'tehnika-dlya-doma500', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -99,6 +139,9 @@ CREATE TABLE `products` (
 CREATE TABLE `product_categories` (
   `product_id` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
+  `name_categories` varchar(255) NOT NULL,
+  `subcategories_id` int(3) NOT NULL,
+  `name_subcategories` varchar(255) NOT NULL,
   `position` int(11) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
@@ -216,7 +259,7 @@ ALTER TABLE `variants`
 -- AUTO_INCREMENT для таблицы `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT для таблицы `orders`
 --
@@ -231,7 +274,7 @@ ALTER TABLE `pages`
 -- AUTO_INCREMENT для таблицы `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 --
 -- AUTO_INCREMENT для таблицы `purchases`
 --
@@ -246,7 +289,8 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `variants`
 --
 ALTER TABLE `variants`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
