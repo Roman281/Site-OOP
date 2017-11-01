@@ -1,0 +1,41 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+<h1>{{ name }}</h1>
+
+
+<div class="col-lg-12">
+    <form method="post">
+        <h3>Добавить категорию товара</h3>
+        <input type="hidden" name="id" value="{{ categories.id }}">
+        <div class="form-group">
+            <label>Название</label>
+            <input class="form-control" type="text" name="name" value="{{ categories.name }}">
+        </div>
+        <div class="form-group">
+            <label>URL</label>
+            <input class="form-control" type="text" name="url" value="{{ categories.url }}">
+        </div>
+        <div class="form-group">
+            <label>Видимость</label>
+            <input class="form-control" type="checkbox" name="visible" value="{{ categories.visible}}">
+        </div>
+        <div class="form-group">
+            <label>Картинка</label>
+            <input class="form-control" type="file" name="image" value="">
+        </div>
+        <div class="form-group">
+            <label>Цена</label>
+            <input class="form-control" type="text" name="price" value="{{ categories.price}}">
+        </div>
+        <div class="form-group">
+            <label>Описание</label>
+            <textarea class="form-control" name="description">{{ categories.description }}</textarea>
+        </div>
+
+        <input type="submit" name="save" value="Сохранить">
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,32 @@
+table, th, td
+{
+border-style:solid;
+border-width:1px;
+border-collapse:collapse;
+padding:2px;
+text-align:left;
+/*width: 70%;*/
+}
+/*th 
+{
+height:28px;
+background-color:#f892dc;
+color:white;
+border-color:black;
+}
+.ts1 
+{
+background-color:#ffeffb;
+}*/
+tr:hover {
+ background-color: #E0E0FF; 
+}
+
+/*thead {
+
+ width: 100%; 
+ position: fixed; 
+height: 109px; 
+ top: 0;
+background: url(../images/header.png) no-repeat;
+ }*/
