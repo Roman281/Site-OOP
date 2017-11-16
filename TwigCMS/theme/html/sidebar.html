@@ -1,0 +1,22 @@
+ {% extends "index.html" %}
+
+
+
+
+{% block sidebar %}
+
+<div class="col-lg-4 panel panel-default">
+                <h2 class="panel-heading">Sidebar</h2>
+                
+    <h1>Sidebr Users</h1>
+    <ul>;
+     {% for category in categories %}
+        <li> <div class="col-lg-4"><a href="{{ product }}">{{ category.name }}</a> 
+        </div> </li>
+      </ul>  
+      {% endfor %}
+                
+</div>
+
+
+{% endblock %}

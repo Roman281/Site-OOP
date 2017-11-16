@@ -1,0 +1,75 @@
+ {% extends "index.html" %}
+
+
+{% block content %}
+    <h1>{{ product.name }}</h1>
+
+ <div class="col-lg-8 panel panel-default">
+
+
+<!-- //////////////////////////////////////////// -->
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="col-lg-4">
+            <div class="image text-center">
+                <img src="files/images/product.image" width="200px">
+            </div>
+        </div>
+        <div class="col-lg-8">
+            
+
+          <div class="price">
+
+            <span class="label label-info">  {{ namePrice }}   
+                     {{ product.price }} грн.</span> 
+
+          </div>  
+          <h4> {{ discriptionProduct }} </h4>
+                <div class="bg-info">
+                    {{ product.name }}
+                    {{ product.description }}
+                </div>
+          
+        </div>
+        <div class = 'form-basket'>
+                    <form  name = 'basket' method="post">
+                        <label>Количество</label>
+                        <input type="number" name="amount" value = '1' min="1" max="50">           
+                        <input type="hidden" name="idid" value="{{ product.id }}">
+                        <input type="submit"  name="bay" style="background: #ed710b; value="Добввить в корзину">
+                    </form>            
+        </div>
+  
+    </div>
+   
+
+</div>
+
+<!-- ///////////////////////// -->
+
+</div>
+
+   
+{% endblock %}
+
+
+{% block sidebar %}
+
+<div class="col-lg-4 panel panel-default">
+                <h2 class="panel-heading">Sidebar</h2>
+                
+
+     <ul>
+        {% for category in categories %}
+            <li><div class="col-lg-4"><a href="catalog?id={{ category1.id }} ">{{ category.name }}</a> 
+                </div>
+            </li>
+    </ul>  
+        {% endfor %}
+                
+</div>
+
+
+{% endblock %}
+

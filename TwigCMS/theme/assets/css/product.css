@@ -1,0 +1,32 @@
+.form-basket {
+	
+	margin: 10px 10px;
+	float: right;
+	padding: 0 10px;
+}
+.form-wish {
+	margin: 10px 10px;
+	float: right;
+	padding: 0 10px;
+}
+.clean-cart {
+	margin: 10px 10px;
+	float: right;
+	padding: 10px 10px;
+	float: right;
+}
+.clean-wish  {
+	margin: 10px 10px;
+	float: right;
+	padding: 10px 10px;
+	float: right;
+	position: relative;
+}
+
+.btn {
+	margin: 10px 10px;
+	float: right;
+	padding: 10px 10px;
+	float: right;
+	position: relative;
+}

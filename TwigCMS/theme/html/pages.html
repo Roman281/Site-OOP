@@ -1,0 +1,27 @@
+{% extends "index.html" %}
+
+
+{% block content %}
+    <h1>{{ name }}</h1>
+
+    <div id="books">
+    	<p>Проверка  Pages</p>
+    </div>
+
+    <div class="col-lg-4 panel panel-default">
+                <h2 class="panel-heading">{{ name }}</h2>
+                
+
+    <ul>
+    {% for page in pages %}
+        <li><div class="col-lg-4"><a href="#">{{ page.description }}</a> 
+        	</div>
+        </li>
+  	</ul>  
+    {% endfor %}
+                
+</div>
+
+{% endblock %}
+
+
