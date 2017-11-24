@@ -6,8 +6,8 @@
      <h1>{{ name }}</h1>
 
     <div class="col-lg-11 panel panel-default">
-              <?php if(!empty($cart->items)) :?>
-    <?php //$clean = clean($cart) ?>
+              {% if cart.items %}
+    
     <div class="row text-center text-primary">
         <div class="col-lg-2">Фото</div>
         <div class="col-lg-4">Наименование</div>
@@ -15,23 +15,23 @@
         <div class="col-lg-2">Кол-во</div>
         <div class="col-lg-2">Сумма</div>
     </div>
-    <?php foreach ($cart->items as $item) :?>
+    {% for item in items %}
         <div class="row">
             <div class="col-lg-2">
                 <img src="files/images/product.jpg" width="75px">
             </div>
-            <div class="col-lg-4"><?php echo $item->name?></div>
-            <div class="col-lg-2"><?php echo $item->variant->price ?></div>
+            <div class="col-lg-4">{{ item.name }}</div>
+            <div class="col-lg-2">{{ item.price }}</div>
             <div class="col-lg-2">
-                <input class="form-control" type="number" value="<?php echo $item->amount?>">
+                <input class="form-control" type="number" value="{{ item.amount }}">
             </div>
             <div class="col-lg-2">
-                <?php echo $item->variant->price*$item->amount ?>
+                {{ item.price*item.amount }}
             </div>
         </div>
-    <?php endforeach;?>
+    {% endfor %}
         <div class="row text-right bg-info">
-            <div>Итого: <?php echo $cart->total_price ?> грн.</div>
+            <div>Итого: {{ cart.total_price }} грн.</div>
         </div>
         <div class="row">
         <div class="col-lg-12">
@@ -69,13 +69,13 @@
         </div>
     </div>
     
-<?php else: ?>
+{% else %}
     <h3>Корзина пуста</h3>
-<?php endif;?>
+{% endif %}
 <div class = "clean-cart" >
      <form  method="post">
         <input type="hidden" name="clean" value="">
-        <input type="submit" style="background: #86b0f4; name="clear" value= 'Очистить'>
+        <input type="submit" style="background: #86b0f4;" name ="clear" value= 'Очистить'>
     </form>
 </div>         
     </div>

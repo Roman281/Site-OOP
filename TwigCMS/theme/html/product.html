@@ -9,7 +9,7 @@
 
 <!-- //////////////////////////////////////////// -->
 
-<div class="row">
+    <div class="row">
     <div class="col-lg-12">
         <div class="col-lg-4">
             <div class="image text-center">
@@ -37,14 +37,14 @@
                         <label>Количество</label>
                         <input type="number" name="amount" value = '1' min="1" max="50">           
                         <input type="hidden" name="idid" value="{{ product.id }}">
-                        <input type="submit"  name="bay" style="background: #ed710b; value="Добввить в корзину">
+                        <input type="submit"  name="bay"  value="Добавить в корзину" style="background: #ed710b;">
                     </form>            
         </div>
-  
-    </div>
-   
 
-</div>
+    </div>
+
+
+    </div>
 
 <!-- ///////////////////////// -->
 
@@ -62,7 +62,7 @@
 
      <ul>
         {% for category in categories %}
-            <li><div class="col-lg-4"><a href="catalog?id={{ category1.id }} ">{{ category.name }}</a> 
+            <li><div class="col-lg-4"><a href="catalog?id={{ category.id }} ">{{ category.name }}</a> 
                 </div>
             </li>
     </ul>  

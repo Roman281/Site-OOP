@@ -36,8 +36,8 @@ class Products extends Database
             $columns[] = $column;
             $values[] = "'".$val."'";
         }
-       // print_r($columns);
         //print_r($values);
+       // print_r($columns);
         $colum_sql = implode(',',$columns);
         $val_sql = implode(',',$values);
 
@@ -50,10 +50,11 @@ class Products extends Database
         $this->query($query);
         return $this->resId();
     }
-     public function getIdCateg()
+
+    public function getIdCateg()
     {
 
-        $query = "SELECT id, part_id FROM product_categories";
+        $query = "SELECT product_id, category_id FROM product_categories";
         $this->query($query);
         return $this->results();
     }
@@ -90,7 +91,8 @@ class Products extends Database
     }
 
     /***********************************************/
-   
+     //Добавление/обновление товара в корзине
 
+/***********************************************/
 
 }

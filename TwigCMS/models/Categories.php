@@ -34,7 +34,7 @@ class Categories extends Database
     public function getCategory($id)
     {
         
-        /*$query = "SELECT id, name, visible, description, image, url FROM categories";*/
+        
        $query = "SELECT p.id, p.name, p.description, p.price, p.image, p.url, pc.product_id
         FROM products p
         INNER JOIN product_categories pc ON p.id = pc.product_id

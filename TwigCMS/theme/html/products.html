@@ -52,7 +52,7 @@
 
     <ul>
      {% for category in categories %}
-        <li> <div class="col-lg-4"><a href="{{ product }}">{{ category.name }}</a> 
+        <li> <div class="col-lg-4"><a href="catalogclass?id={{ category.id }}">{{ category.name }}</a> 
         </div> </li>
       </ul>  
       {% endfor %}
