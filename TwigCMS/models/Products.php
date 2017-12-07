@@ -54,7 +54,7 @@ class Products extends Database
     public function getIdCateg()
     {
 
-        $query = "SELECT product_id, category_id FROM product_categories";
+        $query = "SELECT id, category_id FROM product_categories";
         $this->query($query);
         return $this->results();
     }
@@ -65,6 +65,15 @@ class Products extends Database
             return false;
         }
         $query = "SELECT id, name, description, price, image, url, visible FROM products WHERE id = $id LIMIT 1";
+        $this->query($query);
+        return $this->result();
+    }
+    public function getProductUrl($url)
+    {
+        if(empty($url)) {
+            return false;
+        }
+        $query = "SELECT id, name, description, price, image, url, visible FROM products WHERE url = '".$url."' LIMIT 1";
         $this->query($query);
         return $this->result();
     }

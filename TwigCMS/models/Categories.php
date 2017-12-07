@@ -24,7 +24,18 @@ class Categories extends Database
     public function getCategories()
     {
         
-        $query = "SELECT id, name, visible, description, image, url FROM categories";
+        $query = "SELECT category_id, name, visible, description, image, category_url FROM categories";
+       
+        //echo $query;
+        $this->query($query);
+        return $this->results();
+    }
+    public function getCategoryId($id)
+    {
+        
+        $query = "SELECT category_id, name, visible, description, image, category_url FROM categories
+        WHERE id = $id LIMIT 1";
+
        
         //echo $query;
         $this->query($query);
@@ -42,6 +53,27 @@ class Categories extends Database
         //echo $query;
         $this->query($query);
         return $this->results();
+    }
+
+    public function getCategoryUrl($url)
+    {
+        
+        
+       $query = "  SELECT p.id, p.name, p.description, p.price, p.image, c.name, c.category_url  
+            FROM products p
+            INNER JOIN categories c ON p.category_id=c.category_id
+            WHERE c.category_url =  '".$url."' ";
+        
+        //echo $query;
+        $this->query($query);
+        return $this->results();
+
+
+        /*SELECT p.id AS p_id, p.name, p.description, p.price, p.image, pc.product_id, pc.category_id, c.category_url, c.category_id AS cat_id
+        FROM products AS p, product_categories, categories
+        LEFT JOIN product_categories pc ON p_id = pc.product_id
+        LEFT JOIN categories c ON pc.category_id = cat_id
+        WHERE c.category_url =   '".$url."' ";*/
     }
     public function updateCategories($id, $categories)
     {

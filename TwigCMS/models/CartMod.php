@@ -24,31 +24,31 @@ class CartMod extends Database
 
   /*  print_r(unserialize($_COOKIE['cart']));*/
    //достаем товары из корзины
-    public function getCart($product, $id) {
+  /*  public function getCart($product, $id) {
             $cart_products = array();
             $total_amount = 0;
             $total_price = 0;
             $cart = new stdClass();
         if(isset($_COOKIE['cart'])) {
-            $ids = unserialize($_COOKIE['cart']);
+            $ids = unserialize($_COOKIE['cart']);*/
            //print_r($ids);
 
 
 /***************************************************/
-        foreach ($ids as $id=>$amount) {
+        /*foreach ($ids as $id=>$amount) {
                 $cart_products[$id] = $product;
                 $cart_products[$id]->amount = $amount;
                 $total_price += $cart_products[$id]->price*$amount;
-                $total_amount += $amount;
+                $total_amount += $amount;*/
                 //print_r($cart_products);
-            }
+          /*  }
             $cart->items = $cart_products;
             //print_r($cart);
         }
         $cart->total_price = $total_price;
         $cart->total_amount = $total_amount;
         return $cart;
-    }
+    }*/
 /****************************************************/
             /*foreach ($ids as $id=>$amount) {
                 
@@ -108,14 +108,11 @@ class CartMod extends Database
     }*/
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
      /*Очистить корзину*/
-   /* public function  clean() {
-        
-
+    public function  clean() {
         setcookie('cart','',time()-(60*60*24*30),'/');
         //header("Location: ".$_SERVER['REQUEST_URI']);
         
-        
-    }*/
+    }
 
 
   /***********************************************/
