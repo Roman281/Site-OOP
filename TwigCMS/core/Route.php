@@ -7,6 +7,11 @@ class Route
         $controllers_dir = 'controllers/';
 
         $uri = parse_url($_SERVER['REQUEST_URI']);
+       /* $uri = implode('/', $uri);
+           // print_r($uri);
+        $uri = explode('/', $uri);
+           // print_r($uri);*/
+
 
 
         $uri_array = array(
@@ -20,10 +25,22 @@ class Route
             '/product' => 'ProductMain',
             '/pages' => 'Pages',
             '/cart' => 'Cart',
+            '/catalogclass' => 'Catalogclass',
+            '/catalogclass' => 'Catalog',
+            '/menu' => 'MenuContr',
+           /* '/product/elektroobogrevatel' => 'ProductMain',*/
+            /*'/product/$uri[2]' => 'ProductMain',*/
             
         );
 
         if($uri['path']) {
+    /*    $uri = implode('/', $uri);
+        $uri = explode('/', $uri);
+            if ($uri[2] == '') {
+                $controller_name = '/';
+            } else {
+                $controller_name = '/' . $uri[2];
+            }*/
 
             if(file_exists($controllers_dir.$uri_array[$uri['path']] . '.php')) {
                 require $controllers_dir.$uri_array[$uri['path']] . '.php'; //controllers/Main.php
