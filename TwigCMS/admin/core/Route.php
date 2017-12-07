@@ -3,6 +3,7 @@ class Route
 {
     public static function run()
     {
+        $models_dir = 'models/';
         $controllers_dir = 'controllers/';
 
         $uri = parse_url($_SERVER['REQUEST_URI']);
@@ -10,9 +11,19 @@ class Route
 
         $uri_array = array(
             '/admin/' => 'MainAdmin',
-            '/admin/products/' => 'CatalogAdmin',
-            '/admin/product/' => 'ProductAdmin',
-            '/admin/categories/' => 'CatalogAdmin',
+            '/admin/products' => 'CatalogAdmin',
+            '/admin/product' => 'ProductAdmin',
+             '/admin/catalog' => 'CatalogAdmin',
+            /*название ссылки*/'/admin/categories/' => 'CategoryAdmin',  //это название файла контроллера
+            '/admin/categories' => 'CategoryAdmin',
+            '/admin/categorylist' => 'CategoryListAdmin',
+            '/admin/delivery' => 'DelivAdmin', 
+            '/admin/pay' => 'PayAdmin',
+            '/admin/contact' => 'ContactAdmin',
+           /* '/admin/menu' => 'MenuAdmin',*/
+            /*'/admin/catalog' => 'MenuAdmin',
+            '/admin/delivery' => 'MenuAdmin'
+         */
         );
         if($uri['path']) {
 

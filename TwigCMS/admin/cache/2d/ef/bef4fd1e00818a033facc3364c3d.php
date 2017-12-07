@@ -11,7 +11,9 @@ class __TwigTemplate_2defbef4fd1e00818a033facc3364c3d extends Twig_Template
 
         $this->blocks = array(
             'title' => array($this, 'block_title'),
+            'menu' => array($this, 'block_menu'),
             'content' => array($this, 'block_content'),
+            'sidebar' => array($this, 'block_sidebar'),
         );
     }
 
@@ -30,88 +32,42 @@ class __TwigTemplate_2defbef4fd1e00818a033facc3364c3d extends Twig_Template
         <link href=\"/admin/theme/assets/css/flat-ui.min.css\" rel=\"stylesheet\">
         <link href=\"/admin/theme/assets/css/css.css\" rel=\"stylesheet\">
         <link rel=\"shortcut icon\" href=\"../assets/img/favicon.ico\">
+        <link rel=\"stylesheet\" href=\"css/bootstrap.css\">
+        <link rel=\"stylesheet\" href=\"css/bootstrap-theme.css\">
+        <link rel=\"stylesheet\" href=\"css/menu.css\">
+        <link rel=\"stylesheet\" href=\"css/product.css\">
+
     </head>
-    <body class=\"page-home layout-default\">
+    <body>
     <header class=\"header-navbar clearfix\">
         <nav class=\"navbar navbar-inverse navbar-fixed-top\">
             <div class=\"container\">
                 <div class=\"collapse navbar-collapse navbar-main-collapse\">
                     <ul class=\"nav navbar-nav navbar-right\">
-                        <li class=\" \">
-                            <a href=\"/admin\" class=\"\">
-                                Главная
-                            </a>
-                        </li>
-                        <li class=\" \">
-                            <a href=\"/admin/products/\" class=\"\">
-                                Catalog
-                            </a>
-                        </li>
-                        <li class=\"dropdown\">
-                            <a href=\"#\" data-toggle=\"dropdown\" class=\"dropdown-toggle\">
-                                Pages
-                                <span class=\"caret\"></span>
-                            </a>
-                            <span class=\"dropdown-arrow\"></span>
-                            <ul class=\"dropdown-menu\">
-                                <li class=\" \">
-                                    <a href=\"http://october/about\" class=\"\">
-                                        About Us
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/contact\" class=\"\">
-                                        Contact Us
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/pricing-table\" class=\"\">
-                                        Pricing Table
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/services\" class=\"\">
-                                        Services
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/signin\" class=\"\">
-                                        Sign In
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/register\" class=\"\">
-                                        Register
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/error\" class=\"\">
-                                        Error Page
-                                    </a>
-                                </li>
-                                <li class=\" \">
-                                    <a href=\"http://october/404\" class=\"\">
-                                        404 Page
-                                    </a>
-                                </li>
-
-                            </ul>
-                        </li>
-                    </ul>
+        ";
+        // line 22
+        $this->displayBlock('menu', $context, $blocks);
+        // line 45
+        echo "                    </ul>
                 </div>
             </div>
-        </nav>
+        </nav>   
     </header>
-    <div id=\"layout-content\">
-        <section class=\"home-title\">
-            <div class=\"container\">
-                ";
-        // line 85
+
+        <div id=\"content\">
+            ";
+        // line 52
         $this->displayBlock('content', $context, $blocks);
-        // line 87
-        echo "            </div>
-        </section>
-    </div>
+        // line 55
+        echo "        </div>
+
+        <div id=\"sidebar\">
+            ";
+        // line 58
+        $this->displayBlock('sidebar', $context, $blocks);
+        // line 61
+        echo "        </div>
+
     </body>
     <script src=\"/admin/theme/assets/js/vendor/jquery.min.js\"></script>
     <script src=\"/admin/theme/assets/js/flat-ui.min.js\"></script>
@@ -123,11 +79,71 @@ class __TwigTemplate_2defbef4fd1e00818a033facc3364c3d extends Twig_Template
     {
     }
 
-    // line 85
+    // line 22
+    public function block_menu($context, array $blocks = array())
+    {
+        // line 23
+        echo "         
+                        ";
+        // line 24
+        $context['_parent'] = (array) $context;
+        $context['_seq'] = twig_ensure_traversable((isset($context["menunav"]) ? $context["menunav"] : null));
+        foreach ($context['_seq'] as $context["_key"] => $context["menun"]) {
+            // line 25
+            echo "                           <li>
+                                <a href=\"/admin/";
+            // line 26
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["menun"]) ? $context["menun"] : null), "url"), "html", null, true);
+            echo "\" class=\"\">
+                                    ";
+            // line 27
+            echo twig_escape_filter($this->env, $this->getAttribute((isset($context["menun"]) ? $context["menun"] : null), "name"), "html", null, true);
+            echo "
+                                </a>
+                            </li> 
+                        ";
+        }
+        $_parent = $context['_parent'];
+        unset($context['_seq'], $context['_iterated'], $context['_key'], $context['menun'], $context['_parent'], $context['loop']);
+        $context = array_merge($_parent, array_intersect_key($context, $_parent));
+        // line 30
+        echo " 
+
+                        <li class=\"dropdown\" >
+                            <a href=\"/cart\">
+                                <img src=\"/theme/assets/images/basket1.png\" width=\"40\">                        
+                                <p>Ваша корзина </p> 
+                            </a>
+                        </li>
+                        <li class=\"dropdown\" >
+                            <a href=\"/cart\">
+                                <input class = 'bask' type=\"namber\" name=\"basketnum\" size=\"1*8\" value = \"";
+        // line 40
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cart"]) ? $context["cart"] : null), "total_amount"), "html", null, true);
+        echo "\" > 
+                                товаров на сумму ";
+        // line 41
+        echo twig_escape_filter($this->env, $this->getAttribute((isset($context["cart"]) ? $context["cart"] : null), "total_price"), "html", null, true);
+        echo " грн.
+                            </a>
+                        </li>
+        ";
+    }
+
+    // line 52
     public function block_content($context, array $blocks = array())
     {
-        // line 86
-        echo "                ";
+        // line 53
+        echo "
+            ";
+    }
+
+    // line 58
+    public function block_sidebar($context, array $blocks = array())
+    {
+        // line 59
+        echo "
+            ";
     }
 
     public function getTemplateName()
@@ -137,6 +153,6 @@ class __TwigTemplate_2defbef4fd1e00818a033facc3364c3d extends Twig_Template
 
     public function getDebugInfo()
     {
-        return array (  130 => 86,  127 => 85,  122 => 4,  112 => 87,  110 => 85,  26 => 4,  21 => 1,);
+        return array (  145 => 59,  142 => 58,  137 => 53,  134 => 52,  126 => 41,  122 => 40,  110 => 30,  100 => 27,  96 => 26,  93 => 25,  89 => 24,  86 => 23,  83 => 22,  78 => 4,  69 => 61,  67 => 58,  62 => 55,  60 => 52,  51 => 45,  49 => 22,  28 => 4,  23 => 1,);
     }
 }

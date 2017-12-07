@@ -3,11 +3,15 @@ class MainAdmin extends CoreAdmin
 {
     public function fetch()
     {
+    	$menu = new Menu();
 
+    	$menuNav = $menu->getMenu();
 
         $array_vars = array(
             'name' => 'ADMIN',
-            'name1' => 'Здорово!'
+            'prod' => 'список товара',
+            'menunav' => $menuNav,
+          	
 
         );
 
