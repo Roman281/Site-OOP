@@ -4,19 +4,35 @@ class ProductMain extends Core
     public function fetch()
     {
 
-      
+        $menu = new Menu();
         $CartMod = new CartMod ();
         $products = new Products();
           /* $product = $products->getProduct($id);*/
             //echo $categories_catalog;
-         $categories = new Categories();
+        $categories = new Categories();
         $categories_catalog = $categories->getCategories();    
         /*Вывод това одного*/
-        if(isset($_GET['id'])) {
+       /* if(isset($_GET['id'])) {
            $product = $products->getProduct($_GET['id']);
            //print_r($product);
         } 
+*/
+        $uri = parse_url($_SERVER['REQUEST_URI']);
+            print_r($uri);
 
+        $uri = implode('/', $uri);
+           // print_r($uri);
+        $uri = explode('/', $uri);
+           // print_r($uri);
+            /* foreach($uri as $val) {
+                  //echo $val1= preg_replace('///', '', $val);
+                   $str1 = str_replace("/", "", $val);
+                 print_r($str1);
+               }*/
+            /* $uri[path] = substr($str1,0,strlen($str1)-1);
+            // echo $uri;*/
+        $product = $products->getProductUrl($uri[2]);
+        print_r($product);
     /********************************************************/
    
     //Добавление/обновление товара в корзине
@@ -41,17 +57,19 @@ class ProductMain extends Core
     /*print_r(unserialize($_COOKIE['cart']));*/
     //достаем товары из корзины
         
-    
+    $menuNav = $menu->getMenu();
           
-     
 
+   
         $array_vars = array(
             /*ссылка*/'name' => 'Product', /*значение ссылки*/
-           'product' => $product,
+            //'product' => $product,
             'namePrice' => 'Цена товара:',
             'discriptionProduct' => 'Описание товара',
             'categories' => $categories_catalog ,
             'addcart' => $addProductCart,
+            'product' => $product,
+            'menunav' => $menuNav,
            
 
         );

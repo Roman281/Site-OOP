@@ -3,12 +3,13 @@ class Cart extends Core
 {
     public function fetch()
     {
+        $menu = new Menu();
         $cart = new CartMod();
         $products = new Products();
         $request = new Request();
        // $categories = new Categories();
         ////////////////////////////
-       $product = new stdClass();
+        $product = new stdClass();
 
         /*if($request->method() == 'POST') {
             $product->id = $request->post('idid');*/
@@ -20,62 +21,56 @@ class Cart extends Core
         }        */
                /* print_r($product_cart);*/
 
+               if(isset($_POST['clear'])) {
+                 $clean=$cart->clean();
+               }
     /******************************************************************/
            
 
                 /*Достать товар из корзины*/
+            //$cart_products = new stdClass();
+            $total_amount = 0;
+            $total_price = 0;
+            $cart = new stdClass();
+        if(isset($_COOKIE['cart'])) {
+            $ids = unserialize($_COOKIE['cart']);
+           //print_r($ids);
+
+
+/***************************************************/
+        foreach ($ids as $id=>$amount) {
+                $cart_products->id = $id;
             
-                 $product = $products->getProduct($id);
-                // var_dump($product);
-                $getCart = $cart->getCart($product, $id);
-               var_dump($getCart);
+                $cart_products->amount = $amount;
+                $cart_products->product = $products->getProduct($id);
+                $cart_products->product['amount'] = $amount;
+                        
+                $price= $cart_products->product['price'];
+               
+                $cart_products->price = $price;
+                $total_price += $price*$amount;
+                //print_r($total_price);
+                $total_amount += $amount;
+               //print_r($cart_products);
             
+            }
+           // $cart->items = $cart_products;
+            //print_r($cart);
+           
+        }
+        //print_r($cart_products);
+        $cart->items = $cart_products;
+        $cart->total_price = $total_price;
+        $cart->total_amount = $total_amount;
+       print_r($cart);
+              // var_dump($product);
+               /* $getCart = $cart->getCart($product, $id);
+               print_r($getCart);*/
+             
 /******************************************************************/
 
 
-
-        /*if(isset($_COOKIE['cart'])) {*/
-            /*$cart_products = array();*/
-        /*$cart_products = array();
-
-        $total_amount = 0;
-        $total_price = 0;
-        $cart = new stdClass();
-    
-        $ids = unserialize($_COOKIE['cart']);
-            foreach ($ids as $id=>$amount) {
-            
-          
-            $cart_products[$id] = $amount;*/
-            /*$cart_products[$amount] = $products->getProduct($id);*/
-            //$cart_products[$id] = $getProduct['price'];
-           // $cart_products[$id] = $products->getProduct($id);
-            //$price = $getProduct['price'];
-            //$cart_products[$id] = $price;
-            /*if( $getProduct = $products->getProduct($id)) {*/
-               // echo $getProduct['price']."<br>";
-              /*  $total_price += $getProduct['price']*$amount;
-
-            }*/
-           
-            //$cart_products[$id]->amount = $amount;
-                //$total_price += $cart_products['price']*$amount;
-                /*$total_amount += $amount;
-*/
-
-            /*$total_price += $getProduct['price']*$amount;
-            $total_amount += $amount;*/
-            /*}*/
-           /* print_r($cart_products);
-           echo "total_amount = ".$total_amount;
-        echo "total_price = ".$total_price;*/
-              // print_r($getProduct );
-              // $product = $products->getProduct($id);
-               //print_r($product);
-           /* $getCart = getCart($product, $getProduct);*/
-           // print_r($getCart);
-        
-           /* } */
+        $menuNav = $menu->getMenu();
            
     /********************************************************/
        
@@ -88,7 +83,9 @@ class Cart extends Core
         $array_vars = array(
             'product' => $product,
             'name' => 'CART',
-            'cart' => $getCart,
+            'cart' => $cart,
+            'cart1' => $cart_products,
+            'menunav' => $menuNav,
             //'categories' => $categories,
         );
 
