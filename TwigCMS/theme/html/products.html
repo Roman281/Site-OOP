@@ -21,7 +21,7 @@
                     <img src="assets/images/product.jpg" width="100px">
                 </div>
                 <div class="name text-center">
-                   <a href= "product?id={{ product.id }} ">{{ product.name }}</a>
+                   <a href= "product/{{ product.url }} ">{{ product.name }}</a>
                 </div>
                 <div class="price">                     
                     <span class="label label-info"> {{ product.price }} грн.</span>                    
@@ -44,6 +44,7 @@
 {% endblock %}
 
 
+
 {% block sidebar %}
 
 <div class="col-lg-4 panel panel-default">
@@ -51,13 +52,15 @@
                 
 
     <ul>
-     {% for category in categories %}
-        <li> <div class="col-lg-4"><a href="catalogclass?id={{ category.id }}">{{ category.name }}</a> 
-        </div> </li>
-      </ul>  
-      {% endfor %}
+    {% for category in categories %}
+          <li><div class="col-lg-4"><a href="catalogclass/{{ category.url }} ">{{ category.name }}</a> 
+            </div>
+        </li>
+    </ul>  
+    {% endfor %}
                 
 </div>
+
 
 
 {% endblock %}

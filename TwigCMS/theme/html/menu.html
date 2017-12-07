@@ -1,0 +1,42 @@
+{% extends "index.html" %}
+
+
+{% block menu %}
+  
+  <!--  <header class="header-navbar clearfix">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="collapse navbar-collapse navbar-main-collapse">
+                    <ul class="nav navbar-nav navbar-right"> -->
+                        
+                        {% for menun in menunav %}
+                           <li>
+                                <a href="/{{ main.url }}" class="">
+                                    {{ menun.name }}
+                                </a>
+                            </li> 
+                        {% endfor %} 
+
+                        <li class="dropdown" >
+                            <a href="/cart">
+                                <img src="/theme/assets/images/basket1.png" width="40">                        
+                                <p>Ваша корзина </p> 
+                            </a>
+                        </li>
+                        <li class="dropdown" >
+                            <a href="/cart">
+                                <input class = 'bask' type="namber" name="basketnum" size="1*8" value = "{{ cart.total_amount }}" > 
+                                товаров на сумму {{ cart.total_price }} грн.
+                            </a>
+                        </li>
+    <!--                 </ul>
+                </div>
+            </div>
+        </nav>    -->
+    
+{% endblock %}
+
+
+
+
+

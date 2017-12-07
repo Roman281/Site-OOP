@@ -9,18 +9,18 @@
     </div>
 
     <div class="col-lg-4 panel panel-default">
-                <h2 class="panel-heading">{{ name }}</h2>
+        <h2 class="panel-heading">{{ name }}</h2>
                 
 
-    <ul>
-    {% for page in pages %}
-        <li><div class="col-lg-4"><a href="#">{{ page.description }}</a> 
-        	</div>
-        </li>
-  	</ul>  
-    {% endfor %}
+        <ul>
+        {% for page in pages %}
+            <li><div class="col-lg-4"><a href="#">{{ page.description }}</a> 
+            	</div>
+            </li>
+      	</ul>  
+        {% endfor %}
                 
-</div>
+    </div>
 
 {% endblock %}
 

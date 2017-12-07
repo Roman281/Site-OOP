@@ -6,27 +6,27 @@
      <h1>{{ name }}</h1>
 
     <div class="col-lg-11 panel panel-default">
-              {% if cart.items %}
+    {% if cart.items %}
     
     <div class="row text-center text-primary">
         <div class="col-lg-2">Фото</div>
-        <div class="col-lg-4">Наименование</div>
-        <div class="col-lg-2">Цена, грн</div>
+        <div class="col-lg-4">Наименование </div>
+        <div class="col-lg-2">Цена , грн</div>
         <div class="col-lg-2">Кол-во</div>
-        <div class="col-lg-2">Сумма</div>
+        <div class="col-lg-2">Сумма </div>
     </div>
-    {% for item in items %}
+    {% for item in cart.items.product %}
         <div class="row">
             <div class="col-lg-2">
                 <img src="files/images/product.jpg" width="75px">
             </div>
-            <div class="col-lg-4">{{ item.name }}</div>
-            <div class="col-lg-2">{{ item.price }}</div>
+            <div class="col-lg-4">{{ cart.items.product.name }}</div>
+            <div class="col-lg-2">{{ cart.items.product.price }}</div>
             <div class="col-lg-2">
-                <input class="form-control" type="number" value="{{ item.amount }}">
+                <input class="form-control" type="number" value="{{ cart.items.product.amount }}">
             </div>
             <div class="col-lg-2">
-                {{ item.price*item.amount }}
+                {{ cart.items.product.price*cart.items.product.amount }}
             </div>
         </div>
     {% endfor %}
@@ -63,21 +63,25 @@
                     <textarea class="form-control" name="comment"></textarea>
                 </div>
 
-
-                <input class="btn" type="submit" name="make_order" value="Купить">
+                <div class="form-group">
+                    <input class="btn" type="submit" name="make_order" value="Купить">
+                </div>
+                <div class = "clean-cart" >
+                    <input type="submit" style="background: #86b0f4;" name ="clear" value= 'Очистить'>
+                </div>
             </form>
         </div>
     </div>
     
-{% else %}
-    <h3>Корзина пуста</h3>
-{% endif %}
-<div class = "clean-cart" >
+    {% else %}
+        <h3>Корзина пуста</h3>
+    {% endif %}
+<!-- <div class = "clean-cart" >
      <form  method="post">
         <input type="hidden" name="clean" value="">
         <input type="submit" style="background: #86b0f4;" name ="clear" value= 'Очистить'>
     </form>
-</div>         
+</div>   -->       
     </div>
 {% endblock %}
 

@@ -46,6 +46,8 @@
 
     </div>
 
+    
+
 <!-- ///////////////////////// -->
 
 </div>
@@ -54,21 +56,23 @@
 {% endblock %}
 
 
+
 {% block sidebar %}
 
 <div class="col-lg-4 panel panel-default">
                 <h2 class="panel-heading">Sidebar</h2>
                 
 
-     <ul>
-        {% for category in categories %}
-            <li><div class="col-lg-4"><a href="catalog?id={{ category.id }} ">{{ category.name }}</a> 
-                </div>
-            </li>
+    <ul>
+    {% for category in categories %}
+         <li><div class="col-lg-4"><a href="catalogclass/{{ category.url }} ">{{ category.name }}</a>  
+            </div>
+        </li>
     </ul>  
-        {% endfor %}
+    {% endfor %}
                 
 </div>
+
 
 
 {% endblock %}
