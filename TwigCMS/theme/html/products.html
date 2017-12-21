@@ -12,7 +12,7 @@
 
 <!-- //////////////////////////////////////////// -->
 
-<div class="col-lg-12">
+<!-- <div class="col-lg-12">
      {% if products  %}
         {% for product in products %}
          <div class="col-lg-4">
@@ -32,7 +32,7 @@
         {% endfor %}
     {% endif %}
 
-</div>
+</div> -->
 
 <!-- ///////////////////////// -->
 
@@ -47,19 +47,20 @@
 
 {% block sidebar %}
 
-<div class="col-lg-4 panel panel-default">
+<!-- <div class="col-lg-4 panel panel-default">
                 <h2 class="panel-heading">Sidebar</h2>
                 
 
-    <ul>
+    <<ul>
     {% for category in categories %}
-          <li><div class="col-lg-4"><a href="catalogclass/{{ category.url }} ">{{ category.name }}</a> 
+    
+        <li><div class="col-lg-4"><a href="{{ category.category_url }} ">{{ category.name }}</a> 
             </div>
         </li>
     </ul>  
     {% endfor %}
                 
-</div>
+</div> -->
 
 
 

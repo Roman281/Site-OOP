@@ -9,12 +9,14 @@
                 <h2 class="panel-heading">Sidebar</h2>
                 
     <h1>Sidebr Users</h1>
-    <ul>;
-     {% for category in categories %}
-        <li> <div class="col-lg-4"><a href=" product?url={{ category.url }}">{{ category.name }}</a> 
-        </div> </li>
-      </ul>  
-      {% endfor %}
+    <ul>
+    {% for category in categories %}
+    
+        <li><div class="col-lg-4"><a href="catalogclass/{{ category.category_url }} ">{{ category.name }}</a> 
+            </div>
+        </li>
+    </ul>  
+    {% endfor %}
                 
 </div>
 

@@ -7,23 +7,23 @@
  <div class="col-lg-8 panel panel-default">
         <h2 class="panel-heading">Content</h2>
 
-       
+       {{ product.url }}
 
 <!-- //////////////////////////////////////////// -->
 
 <div class="col-lg-12">
-     {% if category1  %}
-        {% for product in category1 %}
+     {% if categoryurl  %}
+        {% for products in categoryurl %}
          <div class="col-lg-4">
             <div class="panel panel-info">
                 <div class="image text-center">
                     <img src="/assets/images/product.jpg" width="100px">
                 </div>
                 <div class="name text-center">
-                   <a href="product/{{ product.url }}">{{ product.name }}</a>
+                   <a href="product/{{ product.url }}">{{ products.name }}</a>
                 </div>
                 <div class="price">                     
-                    <span class="label label-info"> {{ product.price }} грн.</span>                    
+                    <span class="label label-info"> {{ products.price }} грн.</span>                    
                 </div>  
             </div>
          </div>
@@ -33,33 +33,31 @@
 
 </div>
 
+
 <!-- ///////////////////////// -->
 
 </div>
 
-    <div id="books">
-    	<!-- <p>Проверка Главная страница</p> -->
-    </div>
+    
 {% endblock %}
 
 
-
-
 {% block sidebar %}
+
 <div class="col-lg-4 panel panel-default">
                 <h2 class="panel-heading">Sidebar</h2>
                 
 
     <ul>
     {% for category in categories %}
-        <li><div class="col-lg-4"><a href="catalogclass/{{ category.url }} ">{{ category.name }}</a> 
+    
+        <li><div class="col-lg-4"><a href="{{ category.category_url }} ">{{ category.name }}</a> 
             </div>
         </li>
     </ul>  
     {% endfor %}
                 
 </div>
-
 
 
 {% endblock %}

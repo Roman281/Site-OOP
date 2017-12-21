@@ -12,18 +12,18 @@
 <!-- //////////////////////////////////////////// -->
 
 <div class="col-lg-12">
-     {% if products  %}
-        {% for product in products %}
+     {% if categoryurl  %}
+        {% for products in categoryurl %}
          <div class="col-lg-4">
             <div class="panel panel-info">
                 <div class="image text-center">
                     <img src="/assets/images/product.jpg" width="100px">
                 </div>
                 <div class="name text-center">
-                   <a href="product/{{ product.url }}">{{ product.name }}</a>
+                   <a href="product/{{ products.url }}">{{ products.name }}</a>
                 </div>
                 <div class="price">                     
-                    <span class="label label-info"> {{ product.price }} грн.</span>                    
+                    <span class="label label-info"> {{ products.price }} грн.</span>                    
                 </div>  
             </div>
          </div>
@@ -49,10 +49,11 @@
 
     <ul>
     {% for category in categories %}
-        <li><div class="col-lg-4"><a href="catalog/{{ categoryurl.url }} ">{{ category.name }}</a> 
-        	</div>
+    
+        <li><div class="col-lg-4"><a href="{{ category.category_url }} ">{{ category.name }}</a> 
+            </div>
         </li>
-  	</ul>  
+    </ul>  
     {% endfor %}
                 
 </div>

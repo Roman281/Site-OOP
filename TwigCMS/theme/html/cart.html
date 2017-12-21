@@ -15,18 +15,18 @@
         <div class="col-lg-2">Кол-во</div>
         <div class="col-lg-2">Сумма </div>
     </div>
-    {% for item in cart.items.product %}
+    {% for item in cart.items %}
         <div class="row">
             <div class="col-lg-2">
                 <img src="files/images/product.jpg" width="75px">
             </div>
-            <div class="col-lg-4">{{ cart.items.product.name }}</div>
-            <div class="col-lg-2">{{ cart.items.product.price }}</div>
+            <div class="col-lg-4">{{ item.name }}</div>
+            <div class="col-lg-2">{{ item.price }}</div>
             <div class="col-lg-2">
-                <input class="form-control" type="number" value="{{ cart.items.product.amount }}">
+                <input class="form-control" type="number" value="{{ item.amount }}">
             </div>
             <div class="col-lg-2">
-                {{ cart.items.product.price*cart.items.product.amount }}
+                {{ item.price*item.amount }}
             </div>
         </div>
     {% endfor %}
@@ -34,7 +34,7 @@
             <div>Итого: {{ cart.total_price }} грн.</div>
         </div>
         <div class="row">
-        <div class="col-lg-12">
+        <div class="col-lg-6">
             <h3>Контактные данные</h3>
             <form method="post" action="">
 
@@ -67,7 +67,7 @@
                     <input class="btn" type="submit" name="make_order" value="Купить">
                 </div>
                 <div class = "clean-cart" >
-                    <input type="submit" style="background: #86b0f4;" name ="clear" value= 'Очистить'>
+                    <input type="submit" style="background: #86b0f4;" name ="clean" value= 'Очистить'>
                 </div>
             </form>
         </div>

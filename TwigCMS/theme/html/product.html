@@ -36,7 +36,7 @@
                     <form  name = 'basket' method="post">
                         <label>Количество</label>
                         <input type="number" name="amount" value = '1' min="1" max="50">           
-                        <input type="hidden" name="idid" value="{{ product.id }}">
+                        <input type="hidden" name="idid" value="{{ product.url}}">
                         <input type="submit"  name="bay"  value="Добавить в корзину" style="background: #ed710b;">
                     </form>            
         </div>
@@ -65,7 +65,8 @@
 
     <ul>
     {% for category in categories %}
-         <li><div class="col-lg-4"><a href="catalogclass/{{ category.url }} ">{{ category.name }}</a>  
+
+        <li><div class="col-lg-4"><a href="catalogclass/{{ category.category_url }} ">{{ category.name }}</a> 
             </div>
         </li>
     </ul>  
