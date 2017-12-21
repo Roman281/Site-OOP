@@ -6,8 +6,6 @@ class Main extends Core
         $menu = new Menu();
         $category1 = new Categories();
         $categories = new Categories();
-        $categories_catalog = $categories->getCategories(); 
-       // print_r($categories_catalog);
         
         /***********************************/
         $uri = parse_url($_SERVER['REQUEST_URI']);
@@ -15,14 +13,18 @@ class Main extends Core
         foreach($uri as $val) {
                
              $str1 = str_replace("/", "", $val);
-                var_dump($str1);
+               // print_r($str1);
         }
 
            /* $product = $products->getProduct($str1);
                 print_r($page);*/
-            $category_class = $category1->getCategory($str1);
+        $categories_catalog = $categories->getCategories(); 
+        // print_r($categories_catalog);
+        $category_class = $categories->getCategoryUrl($str1); 
+         
+       /* $category_class = $category1->getCategory($str1);*/
+        //print_r($category_class);
 
-              $menuNav = $menu->getMenu();
 
         /***********************************/ 
 
@@ -34,7 +36,7 @@ class Main extends Core
 */
 
         $menuNav = $menu->getMenu();
-        print_r($menuNav);
+        //print_r($menuNav);
         
 
 

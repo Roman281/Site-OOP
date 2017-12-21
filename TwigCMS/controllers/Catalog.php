@@ -5,32 +5,40 @@ class Catalog extends Core
     {
         $menu = new Menu();
         $products = new Products();
-            $products = $products->getProducts();
+       
             //echo $categories_catalog;
         $categories = new Categories();
         $category1 = new Categories(); 
         $categoriesUrl = new Categories();
 
-         $categories_catalog = $categories->getCategories();
+       // $products = $products->getProducts();
 
-         $categoryUrl = $categoriesUrl->getCategoryUrl($url);
-      /*  if(isset($_GET['id'])) {
-           
-           $category_class = $categories->getCategory($_GET['id']);
+        $categories_catalog = $categories->getCategories();
+         //print_r($categories_catalog);
 
-        } */
-    /*    $uri = parse_url($_SERVER['REQUEST_URI']);
-            // print_r($uri);
-        foreach($uri as $val) {
-               
-             $str1 = str_replace("/", "", $val);
-                var_dump($str1);
-        }*/
+        $uri = parse_url($_SERVER['REQUEST_URI']);
+        $uri = explode('/', $uri['path']);
+           //print_r($uri);   
+       
+        //print_r($urival);
+        if (empty($uri[2])) {
+          $categoryUrl = $products->getProducts();
+        } else {
+        $urival = array_pop($uri);
+            //print_r($urival);
+        $categoryUrl = $categoriesUrl->getCategoryUrl($urival);
+        //print_r($categoryUrl);
 
-           /* $product = $products->getProduct($str1);
-                print_r($page);*/
-      /*      $category_class = $category1->getCategory($str1);   */
-        
+        }
+     
+       /* $uri = parse_url($_SERVER['REQUEST_URI']);
+        $uri = explode('/', $uri['path']);
+           // print_r($uri);          
+        $urival = array_pop($uri);
+            //print_r($urival);
+        $category_class = $categoriesUrl->getCategoryUrl($urival);
+       // print_r($category_class);*/
+
         $menuNav = $menu->getMenu();
 
   
@@ -39,10 +47,10 @@ class Catalog extends Core
             'name' => 'List products',
             'products' => $products ,
             'categories' => $categories_catalog ,
-            'categoryurl' => $categoryUrl,
+           'categoryurl' => $categoryUrl,
             'menunav' => $menuNav,
         );
         //print_r($array_vars);
-        return $this->view->render('products.html',$array_vars);
+        return $this->view->render('catalog.html',$array_vars);
     }
 }

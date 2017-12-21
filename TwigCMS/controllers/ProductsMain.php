@@ -7,7 +7,7 @@ class ProductsMain extends Core
       
 
         $products = new Products();
-            $products = $products->getProducts();
+        $products = $products->getProducts();
             //echo $categories_catalog;
         $categories = new Categories();
         $categories_catalog = $categories->getCategories();
