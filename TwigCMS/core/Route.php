@@ -20,31 +20,43 @@ class Route
             '/delivery' => 'Delivery',
             '/pay' => 'Pay',
             '/contact' => 'Contact',
-            '/listcategories' => 'CategoryList',
-            '/products' => 'ProductsMain',
+            //'/listcategories' => 'CategoryList',
+            //'/products' => 'ProductsMain',
             '/product' => 'ProductMain',
             '/pages' => 'Pages',
             '/cart' => 'Cart',
             '/catalogclass' => 'Catalogclass',
-            '/catalogclass' => 'Catalog',
+           // '/catalogclass' => 'Catalog',
             '/menu' => 'MenuContr',
-           /* '/product/elektroobogrevatel' => 'ProductMain',*/
+            //'/product/elektroobogrevatel' => 'ProductMain',
             /*'/product/$uri[2]' => 'ProductMain',*/
             
         );
 
         if($uri['path']) {
-    /*    $uri = implode('/', $uri);
-        $uri = explode('/', $uri);
-            if ($uri[2] == '') {
-                $controller_name = '/';
-            } else {
-                $controller_name = '/' . $uri[2];
-            }*/
+    /*    $uri = implode('/', $uri);*/
 
-            if(file_exists($controllers_dir.$uri_array[$uri['path']] . '.php')) {
-                require $controllers_dir.$uri_array[$uri['path']] . '.php'; //controllers/Main.php
-                $controller = new $uri_array[$uri['path']](); // new Main();
+        $uri = explode('/', $uri['path']);
+           // print_r($uri);
+            
+            $uri[1];    
+            $key = key($uri);
+
+                     
+            if ($uri[1]== '') {
+                $urikey = '/';
+               }else{ 
+           /* } elseif($i=0; $i<count($uri); $i++){*/
+                $urikey = '/' . $uri[1];
+                //print_r($urikey);
+             /* }*/
+            }
+            
+             
+
+            if(file_exists($controllers_dir.$uri_array[$urikey] . '.php')) {
+                require $controllers_dir.$uri_array[$urikey] . '.php'; //controllers/Main.php
+                $controller = new $uri_array[$urikey](); // new Main();
 
                 if(method_exists($controller,'fetch')) {
                     print $controller->fetch();
