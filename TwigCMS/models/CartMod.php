@@ -6,106 +6,122 @@ class CartMod extends Database
     public function addProductCart () {
        
             $cart = array();
-            $product_id = trim(strip_tags($_POST['idid']));
+            $product_url = trim(strip_tags($_POST['idid']));
             $amount = trim(strip_tags($_POST['amount']));
                 if(isset($_COOKIE['cart'])) {
                     $cart = unserialize($_COOKIE['cart']);
                 }
-            $cart[$product_id] = $amount;
+            $cart[$product_url] = $amount;
 
             setcookie('cart',serialize($cart),time()+(3600*24*30),'/');
-            $path = 'product&id='.$_POST['idid'];
+            /*$path = 'product&id='.$_POST['idid'];*/
           //  setcookie('cart','',time()-(60*60*24*30),'/');
           //  header("Location: ".$_SERVER['REQUEST_URI']);
         
         return $cart;
     }
-
-
-  /*  print_r(unserialize($_COOKIE['cart']));*/
-   //достаем товары из корзины
-  /*  public function getCart($product, $id) {
-            $cart_products = array();
+    //достаем товары из корзины
+    function getCart($product) {
+        $cart_products = new stdClass();
             $total_amount = 0;
             $total_price = 0;
             $cart = new stdClass();
         if(isset($_COOKIE['cart'])) {
-            $ids = unserialize($_COOKIE['cart']);*/
-           //print_r($ids);
+            $ids = unserialize($_COOKIE['cart']);
+           print_r($ids);
 
 
 /***************************************************/
-        /*foreach ($ids as $id=>$amount) {
-                $cart_products[$id] = $product;
-                $cart_products[$id]->amount = $amount;
-                $total_price += $cart_products[$id]->price*$amount;
-                $total_amount += $amount;*/
-                //print_r($cart_products);
-          /*  }
-            $cart->items = $cart_products;
-            //print_r($cart);
-        }
-        $cart->total_price = $total_price;
-        $cart->total_amount = $total_amount;
-        return $cart;
-    }*/
-/****************************************************/
-            /*foreach ($ids as $id=>$amount) {
-                
-                $cart_products[$id] = $amount;
-
-                foreach ($product as $key => $value) {
-                    if($id == $cart_products[$id]) {
-                    $getProduct[$price] = $value;
-                    }
-                }*/
-                /*$cart_products[$id] = $getProduct;
-              print_r($cart_products);*/
-               // $cart_products[$id]->amount = $amount;
-               /* $total_price += $value*$amount;
-                $total_amount += $amount;
-            }
-            print_r($cart_products);
-            echo "total_amount = ".$total_amount;
-            echo "total_price = ".$total_price;
-            $cart->items = $cart_products;
+        foreach ($ids as $url=>$amount) {
+                $cart_products->url = $url;
             
+                $cart_products->amount = $amount;
+                /*$cart_products->product = $products->getProductUrl($url);*/
+                    $cart_products->product=$product;
+                $cart_products->product['amount'] = $amount;
+                        
+                $price= $cart_products->product['price'];
+               print_r($cart_products);
+                $cart_products->price = $price;
+                $total_price += $price*$amount;
+                //print_r($total_price);
+                $total_amount += $amount;
+               //print_r($cart_products);
+            
+            }
+           // $cart->items = $cart_products;
+            //print_r($cart);
+           
+        }
+        //print_r($cart_products);
+        $cart->items = $cart_products;
         $cart->total_price = $total_price;
-
         $cart->total_amount = $total_amount;
+        //return $cart;
+    }
+    /*public function viewCart($product) {
+        if(isset($_COOKIE['cart'])) {
+                $ids = unserialize($_COOKIE['cart']);
+                foreach ($ids as $url=>$amount) {
+                   // $product = $products->getProductUrl($url);
+                    $cart_products[$url] = $product;
 
+                    $cart_products[$url]['amount'] = $amount;
+                    
+                    $total_price += $product['price']*$amount;
+                    $total_amount += $amount;
+                  // print_r($cart_products);
+                   // print_r($product);
+                }
+                $cart->items = $cart_products;
+             //   print_r($cart);
+            }
+           // print_r($cart_products);
+        $cart->total_price = $total_price;
+        $cart->total_amount = $total_amount;
         return $cart;
     }*/
-
-/*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
- /*if(isset($_POST['id1'])) {
-        $cart2 = array();
-        $product_id = trim(strip_tags($_POST['id1']));
     
-            if(isset($_COOKIE['wishlist'])) {
-                $cart2 = unserialize($_COOKIE['wishlist']);
-            }
-        $cart2[$product_id] = $product_id;
+    /*Запись данных заказчика в базу в базу*/
+    public function saveOrder($order)
+    {
+        if(empty($order)) {
+            return false;
+        }
 
-        setcookie('wishlist',serialize($cart2),time()+(3600*24*30),'/');
-        $path = '?r=product&id='.$_POST['id1'];
-       //setcookie('wishlist','',time()-(60*60*24*30),'/');
-        header("Location: ".$_SERVER['REQUEST_URI']);
+        foreach ($order as $column => $val) {
+            $columns[] = $column;
+            $values[] = "'".$val."'";
+        }
+
+        $colum_sql = implode(',',$columns);
+        $val_sql = implode(',',$values);
+
+        $query = "INSERT INTO orders ($colum_sql) VALUES ($val_sql)";
+        $this->query($query);
+        return $this->resId();
+    }
+    /*Запись заказа в базу*/
+    public function savePurchases($purchas)
+    {
+        if(empty($purchas)) {
+            return false;
+        }
+
+        foreach ($purchas as $column => $val) {
+            $columns[] = $column;
+            $values[] = "'".$val."'";
+        }
+
+        $colum_sql = implode(',',$columns);
+        $val_sql = implode(',',$values);
+
+        $query = "INSERT INTO purchases ($colum_sql) VALUES ($val_sql)";
+        $this->query($query);
+        return $this->resId();
     }
 
-   function getWish($products) {
-        $cart_products2 = array();
-        $cart2 = new stdClass();
-        if(isset($_COOKIE['wishlist'])) {
-            $ids2 = unserialize($_COOKIE['wishlist']);
-            foreach ($ids2 as $id=>$amount) {
-                $cart_products2[$id] = getProduct($products, $id);
-            }
-            $cart2->items = $cart_products2;
-            //print_r($cart2);
-        }
-        return $cart2;
-    }*/
+  
     /*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~*/
      /*Очистить корзину*/
     public function  clean() {

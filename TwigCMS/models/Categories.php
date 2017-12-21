@@ -54,27 +54,26 @@ class Categories extends Database
         $this->query($query);
         return $this->results();
     }
+    /*public function getCategoryClass()        
+       $query =  "SELECT pc.product_id FROM product_categories pc WHERE pc.category_id = '".$id."'";
+       
+        $this->query($query);
+        return $this->results();
+    }*/
 
     public function getCategoryUrl($url)
     {
         
         
-       $query = "  SELECT p.id, p.name, p.description, p.price, p.image, c.name, c.category_url  
+       $query = "  SELECT p.id, p.name, p.description, p.price, p.image, p.url,c.category_url  
             FROM products p
             INNER JOIN categories c ON p.category_id=c.category_id
             WHERE c.category_url =  '".$url."' ";
         
-        //echo $query;
         $this->query($query);
         return $this->results();
-
-
-        /*SELECT p.id AS p_id, p.name, p.description, p.price, p.image, pc.product_id, pc.category_id, c.category_url, c.category_id AS cat_id
-        FROM products AS p, product_categories, categories
-        LEFT JOIN product_categories pc ON p_id = pc.product_id
-        LEFT JOIN categories c ON pc.category_id = cat_id
-        WHERE c.category_url =   '".$url."' ";*/
     }
+    
     public function updateCategories($id, $categories)
     {
         if(empty($id)) {
