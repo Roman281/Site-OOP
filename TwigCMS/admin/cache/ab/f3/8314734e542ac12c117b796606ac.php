@@ -31,7 +31,7 @@ class __TwigTemplate_abf38314734e542ac12c117b796606ac extends Twig_Template
         echo "<h1>";
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true);
         echo "</h1>
-<div class=\"col-lg-12\">
+<div class=\"col-lg-8\">
     <form method=\"post\">
         <h3>Добавить категорию товара</h3>
         <input type=\"hidden\" name=\"id\" value=\"";

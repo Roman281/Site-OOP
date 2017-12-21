@@ -33,7 +33,7 @@ class __TwigTemplate_a45abed27b4bf41c05eb31f143be9c89 extends Twig_Template
         // line 6
         echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : null), "html", null, true);
         echo "</h1>
-<div class=\"col-lg-12\">
+<div class=\"col-lg-8\">
     <form name = 'product' method=\"post\">
         <h3>Добавить товар</h3>
         <input type=\"hidden\" name=\"id\" value=\"";

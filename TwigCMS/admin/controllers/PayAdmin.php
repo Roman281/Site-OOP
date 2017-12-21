@@ -8,14 +8,9 @@ class PayAdmin extends CoreAdmin
         $menu = new Menu();
     	
         $uri = parse_url($_SERVER['REQUEST_URI']);
-            // print_r($uri);
-        foreach($uri as $val) {
-               
-             $str1 = str_replace("/", "", $val);
-              // var_dump($str1);
-        }
-
-              $page = $pages->getPagesView($str1);
+        $uri = explode('/', $uri['path']);
+        $urival = array_pop($uri);
+        $page = $pages->getPagesView($urival);
 
         $menuNav = $menu->getMenu();
 

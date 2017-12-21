@@ -14,7 +14,7 @@ class Route
             '/admin/products' => 'CatalogAdmin',
             '/admin/product' => 'ProductAdmin',
              '/admin/catalog' => 'CatalogAdmin',
-            /*название ссылки*/'/admin/categories/' => 'CategoryAdmin',  //это название файла контроллера
+            /*название ссылки*/'/admin/categories' => 'CategoryAdmin',  //это название файла контроллера
             '/admin/categories' => 'CategoryAdmin',
             '/admin/categorylist' => 'CategoryListAdmin',
             '/admin/delivery' => 'DelivAdmin', 
