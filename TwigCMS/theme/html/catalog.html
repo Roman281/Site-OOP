@@ -20,7 +20,7 @@
                     <img src="/assets/images/product.jpg" width="100px">
                 </div>
                 <div class="name text-center">
-                   <a href="product/{{ products.url }}">{{ products.name }}</a>
+                   <a href="/product/{{ products.url }}">{{ products.name }}</a>
                 </div>
                 <div class="price">                     
                     <span class="label label-info"> {{ products.price }} грн.</span>                    
@@ -50,7 +50,7 @@
     <ul>
     {% for category in categories %}
     
-        <li><div class="col-lg-4"><a href="{{ category.category_url }} ">{{ category.name }}</a> 
+        <li><div class="col-lg-4"><a href="/catalogclass/{{ category.category_url }} ">{{ category.name }}</a> 
             </div>
         </li>
     </ul>  
